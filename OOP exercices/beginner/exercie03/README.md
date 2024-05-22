@@ -1,0 +1,1 @@
+# Write a PHP class called 'Circle' that has a radius property. Implement methods to calculate the circle's area and circumference.
