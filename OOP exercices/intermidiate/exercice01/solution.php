@@ -9,8 +9,8 @@ class Book{
     public function __construct($title,$author){
          $this->title = $title;
          $this->author = $author;
-         $this->isReturned = true;
-         $this->isAvailable = true;
+         $this->isReturned = 'true';
+         $this->isAvailable = 'true';
     }
     public function getTitle(){
         return $this->title;
@@ -24,6 +24,12 @@ class Book{
     public function isAvailable(){
         return $this->isAvailable;
     }
+    public function setAvailable($true){
+        $this->isAvailable = $true;
+    }
+    public function setReturned($true){
+        $this->isReturned = $true;
+    }
 
 }
 
@@ -35,7 +41,7 @@ class Biblio{
 
     public function showAllbooks(){
         foreach($this->books as $book){
-            echo "book title is : ".$book->getTitle()."\nbook autor is : ".$book->getAuthor()."\nbook is returned : ".$book->isReturned()."\nbook is available : ".$book->isAvailabe().".";
+            echo"book title is : ".$book->getTitle()."\nbook autor is : ".$book->getAuthor()."\nbook is returned : ".$book->isReturned()."\nbook is available : ".$book->isAvailable().".\n";
             
         }
     }
@@ -43,10 +49,10 @@ class Biblio{
     public function BorrowAbook($title){
         foreach($this->books as $book){
             if($book->getTitle() == $title){
-                if($book->isAbailable() == true){
-                    $book->isAvailable = false;
-                    $book->isReturned = false;
-                    echo"the book is successfully borrowed";
+                if($book->isAvailable() == 'true'){
+                    $book->setAvailable('false') ;
+                    $book->setReturned('false');
+                    echo"the book is successfully borrowed \n";
                     return ;
                 }
             }
@@ -56,10 +62,10 @@ class Biblio{
     public function ReturnBook($title){
         foreach($this->books as $book){
             if($book->getTitle() == $title){
-                if($book->isReturned() == false){
-                    $book->isAvailable = true;
-                    $book->isReturned = true;
-                    echo"the book is successfully returned";
+                if($book->isReturned() == 'false'){
+                    $book->setAvailable('true') ;
+                    $book->setReturned('true') ;
+                    echo"the book is successfully returned \n";
                     return;
                 }
             }
@@ -72,6 +78,8 @@ $book3 = new Book('title3','author3');
 $book4 = new Book('title4','author4');
 $books = [$book1,$book2,$book3,$book4];
 $biblio = new Biblio($books);
+$biblio->BorrowAbook('title1');
+$biblio->ReturnBook('title1');
 $biblio->showAllbooks();
 
 ?>
