@@ -1,0 +1,1 @@
+# write a function that takes in an array  and search for all   1 if there are any, then adds them to the end of the array.
